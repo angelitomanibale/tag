@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function doi(){
         userInput = prompt('DOI >>> ')
         output = ''
-        if (userInput.includes('doi:')){
+        if (userInput.includes('#doi:') || userInput.includes('doi:') || userInput.includes('DOI:') || userInput.includes('#DOI:')){
             userInput = userInput.split(':')
             output = `${userInput[1].trim()}`
         }else{
@@ -161,11 +161,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         insertAt(source, source.length - 1, '</issue>')
         volume = volume.toString().replaceAll(',', '')
         source = source.toString().replaceAll(',', '')
-        output = volume + source
-        text.append(output)
+        text.append(`${volume} ${source}`)
         clear()
     }
 
+    function lowercase(){
+        userInput = prompt('Title>>>')
+        output = userInput.toLowerCase()
+        text.append(output)
+		clear()
+    }
 
     if (user == 0){
         authors()
@@ -181,6 +186,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         loopLink()
     } else if (user == 6){
         Volume_Issue()
+    } else if (user == 7){
+        lowercase()
     }
 
 });
