@@ -187,5 +187,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else if (user == 7){
         lowercase()
     }
-    }, .1);
+    }, 5);
 });
