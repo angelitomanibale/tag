@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     op = document.getElementById('option')
     input = document.getElementById('input')
     setTimeout(() => {
-        user = prompt('>>>')    
+        user = prompt('0-Names, 1-DOI, 2-URI, 3-Pages, 4-Title Case, 5-Looplink, 6-Volume(Issue), 7-Lower Case')    
     
     
 
