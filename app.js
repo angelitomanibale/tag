@@ -5,10 +5,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     input = document.getElementById('input')
     user = prompt('>>>')
 
-    function clear(){
-        op.remove()
-    }
-
     function authors(){
         authorNames = prompt(`Author's names: `)
         tagged = []
@@ -69,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             etal = ''
         }
         text.append(`${tagged.toString().replaceAll(',', '')}${etal}`)
-        clear()
     }
 
     function doi(){
@@ -82,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             output = userInput
         }
         text.append(`doi:&nbsp;<pub-id pub-id-type="doi">${output}</pub-id>`)
-        clear()
+        
     }
 
     function URI(){
@@ -93,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         doiTag =  `<uri xlink:href="${http}${userInput}">${http}${userInput}</uri>`
         text.append(doiTag)
-        clear()
+        
     }
 
     function Page(){
@@ -123,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } else if (pageType == '1'){
             text.append(`<fpage>${number[0]}</fpage>&mdash;<lpage>${number[1]}</lpage>`)
         }
-        clear()
+        
     }
 
     function titleCase(){
@@ -138,13 +133,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }   
         }
         text.append(title.toString().replaceAll(',',' ').replaceAll('#',','))
-		clear()
+		
     }
 
     function loopLink(){
         userInput = prompt('Loop link>>>')
         text.append(`<uri xlink:href="${userInput}"/>`)
-		clear()
+		
     }
     function Volume_Issue(){
         userInput = prompt('Volume&Issue >>')
@@ -162,14 +157,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         volume = volume.toString().replaceAll(',', '')
         source = source.toString().replaceAll(',', '')
         text.append(`${volume} ${source}`)
-        clear()
+        
     }
 
     function lowercase(){
         userInput = prompt('Title>>>')
         output = userInput.toLowerCase()
         text.append(output)
-		clear()
+		
     }
 
     if (user == 0){
