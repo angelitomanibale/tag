@@ -3,9 +3,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     text = document.getElementById('output')
     op = document.getElementById('option')
     input = document.getElementById('input')
-    user = prompt('>>>')
+    setTimeout(() => {
+        user = prompt('>>>')    
+    
+    
 
-    function authors(){
+     function authors(){
         authorNames = prompt(`Author's names: `)
         tagged = []
         etal = 0
@@ -161,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     function lowercase(){
-        userInput = prompt('Title>>>')
+        userInput = prompt('Title>>>') 
         output = userInput.toLowerCase()
         text.append(output)
 		
@@ -184,5 +187,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else if (user == 7){
         lowercase()
     }
-
+    }, .1);
 });
