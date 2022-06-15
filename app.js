@@ -172,6 +172,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		clear()
     }
 
+    function sentenceCased(){
+        userInput = prompt('Title>>>')
+        userInput = userInput.toLowerCase()
+        userInput[0] = userInput[0].toUpperCase()
+        output = userInput
+        text.append(output)
+		clear()
+    }
+
     if (user == 0){
         authors()
     } else if(user == 1){
@@ -188,6 +197,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         Volume_Issue()
     } else if (user == 7){
         lowercase()
+    } else if(user == 8){
+        sentenceCased()
     }
 
 });
