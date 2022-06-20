@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
             
         } else if (pageType == '1'){
-            text.append(`<fpage>${number[0]}</fpage>&mdash;<lpage>${number[1]}</lpage>`)
+            text.append(`<fpage>${number[0]}</fpage>&ndash;<lpage>${number[1]}</lpage>`)
         }
         clear()
     }
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         {letter: 'Ü', int: '&Uuml;'},
         {letter: 'Ý', int: '&Yacute;'},
     ]
-    
+
     if (user == 0){
         authors()
     } else if(user == 1){
