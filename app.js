@@ -1,19 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
-
-    text = document.getElementById('output')
-    op = document.getElementById('option')
-    input = document.getElementById('input')
-    user = prompt('>>>')
+    
+   var text = document.getElementById('output')
+    var op = document.getElementById('option')
+    var user = prompt('>>>')
 
     function clear(){
         op.remove()
     }
 
     function authors(){
-        authorNames = prompt(`Author's names: `)
-        tagged = []
-        etal = 0
-        nameList = authorNames.split(' ')
+        var authorNames = prompt(`Author's names: `)
+        var tagged = []
+        var etal = 0
+        var nameList = authorNames.split(' ')
         for (let i = 0; i < nameList.length; i++) {
             
             if (nameList[i].toString().includes(',')){
@@ -24,17 +23,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }
             }
         }
-        nameList = nameList.toString().replaceAll(',',' ').replaceAll('#',',').split(',')
+        var nameList = nameList.toString().replaceAll(',',' ').replaceAll('#',',').split(',')
         for (let i = 0; i < nameList.length; i++) {
             if (nameList[i] == ''){
                 nameList.splice(i)
             }
         }
         for (let i = 0; i < nameList.length; i++){
-            etal = etal + 1
-            surname = []
-            givennames = []
-            author = nameList[i].trim().split(' ')
+            var etal = etal + 1
+            var surname = []
+            var givennames = []
+            var author = nameList[i].trim().split(' ')
             for (let x = 0; x < author.length; x++){
                 if(author[x].length > 1){
                     if (author[x][0] == author[x][0].toLowerCase() && author[x][1] == author[x][1].toLowerCase() && author[x][1] != '.'){
@@ -59,55 +58,67 @@ document.addEventListener("DOMContentLoaded", function(event) {
             tagging(surname,givennames)
         }
         function tagging(surname,givennames){
-            surname = surname.toString()
-            givennames = givennames.toString()
+            var surname = surname.toString()
+            var givennames = givennames.toString()
             tagged.push(`<name><surname>${surname.replace(',',' ')}</surname> <given-names>${givennames.replace(',',' ')}</given-names></name>`)
         }
         if (etal >= 6){
-            etal = `<etal/>`
+            var etal = `<etal/>`
         }else{
-            etal = ''
+            var etal = ''
         }
-        text.append(`${tagged.toString().replaceAll(',', '')}${etal}`)
+        var done = `${tagged.toString().replaceAll(',', '')}${etal}`
+        for (let i = 0; i < done.length; i++) {
+            for (let x = 0; x < character.length; x++) {
+                if(done[i] == character[x].letter){
+                    done = done.replace(done[i], character[x].int)
+                } else if (done[i] == character[x].letter.toLowerCase()){
+                    done = done.replace(done[i], character[x].int.toLowerCase())
+                }
+                
+                
+            }
+        }
+        text.append(done)
         clear()
     }
 
     function doi(){
-        userInput = prompt('DOI >>> ')
-        output = ''
+        var userInput = prompt('DOI >>> ')
+        var output = ''
         if (userInput.includes('#doi:') || userInput.includes('doi:') || userInput.includes('DOI:') || userInput.includes('#DOI:')){
-            userInput = userInput.split(':')
-            output = `${userInput[1].trim()}`
+            var userInput = userInput.split(':')
+            var output = `${userInput[1].trim()}`
         }else{
-            output = userInput
+            var output = userInput
         }
         text.append(`doi:&nbsp;<pub-id pub-id-type="doi">${output}</pub-id>`)
         clear()
     }
 
     function URI(){
-        userInput = prompt('Link >>> ')
-        http = ''
+        var userInput = prompt('Link >>> ')
+        var http = ''
         if (!userInput.includes('http')){
             http = 'https://'
         }
-        doiTag =  `<uri xlink:href="${http}${userInput}">${http}${userInput}</uri>`
+        var doiTag =  `<uri xlink:href="${http}${userInput}">${http}${userInput}</uri>`
         text.append(doiTag)
         clear()
     }
 
     function Page(){
-        pageType = prompt('Page-range(0), Fpage&Lpage(1)>> ')
-        userInput = prompt('Page>> ')
-        dash = ''
+        var pageType = prompt('Page-range(0), Fpage&Lpage(1)>> ')
+        var userInput = prompt('Page>> ')
+        var dash = ''
         for (let i = 0; i < userInput.length; i++) {
             if(isNaN(userInput[i]) == true){
                 dash = userInput[i]
             }   
         }
-        number = userInput.split(dash) 
-        xpage = number[0]
-        ypage = number[1]
+        var number = userInput.split(dash) 
+        var xpage = number[0]
+        var ypage = number[1]
         if (pageType == '0'){
             if(xpage.length == ypage.length){
                 for (let i = 0; i < xpage.length; i++) {
@@ -127,8 +138,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     function titleCase(){
-        userInput = prompt('Article title>>>')
-        title = userInput.toTitleCase().split(' ')
+        var userInput = prompt('Article title>>>')
+        var title = userInput.toTitleCase().split(' ')
         for (let i = 0; i < title.length; i++) { 
             if (title[i].includes(',')){
                 title[i] = title[i].replaceAll(',','#')
@@ -142,45 +153,82 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     function loopLink(){
-        userInput = prompt('Loop link>>>')
+        var userInput = prompt('Loop link>>>')
         text.append(`<uri xlink:href="${userInput}"/>`)
 		clear()
     }
     function Volume_Issue(){
-        userInput = prompt('Volume&Issue >>')
+        var userInput = prompt('Volume&Issue >>')
         function insertAt(array, index, ...elements) {
             array.splice(index, 0, ...elements);
         }
-        split = userInput.replace('(', '#(').split('#')
-        volume = split[0].split('')
+        var split = userInput.replace('(', '#(').split('#')
+        var volume = split[0].split('')
         source = split[1].split('')
-        console.log(source)
         insertAt(volume, 0, '<volume>')
         insertAt(volume, volume.length, '</volume>')
         insertAt(source, 1, '<issue>')
         insertAt(source, source.length - 1, '</issue>')
-        volume = volume.toString().replaceAll(',', '')
-        source = source.toString().replaceAll(',', '')
+        var volume = volume.toString().replaceAll(',', '')
+        var source = source.toString().replaceAll(',', '')
         text.append(`${volume}${source}`)
         clear()
     }
 
     function lowercase(){
-        userInput = prompt('Title>>>')
-        output = userInput.toLowerCase()
+        var userInput = prompt('Title>>>')
+        var output = userInput.toLowerCase()
         text.append(output)
 		clear()
     }
 
-    function sentenceCased(){
-        userInput = prompt('Title>>>')
-        userInput = userInput.toLowerCase()
-        userInput[0] = userInput[0].toUpperCase()
-        output = userInput
-        text.append(output)
+    function unicode() {
+        var userInput = prompt('Character>>>')
+        for (let i = 0; i < userInput.length; i++) {
+            for (let x = 0; x < character.length; x++) {
+                if(userInput[i] == character[x].letter){
+                    userInput = userInput.replace(userInput[i], character[x].int)
+                } else if (userInput[i] == character[x].letter.toLowerCase()){
+                    userInput = userInput.replace(userInput[i], character[x].int.toLowerCase())
+                }
+            }
+        }
+        text.append(userInput)
 		clear()
     }
 
+    var character = [
+        {letter: 'À', int: '&Agrave;'},
+        {letter: 'Á', int: '&Aacute;'},
+        {letter: 'Â', int: '&Acirc;'},
+        {letter: 'Ã', int: '&Atilde;'},
+        {letter: 'Ä', int: '&Auml;'},
+        {letter: 'Å', int: '&Aring;'},
+        {letter: 'Æ', int: '&AElig;'},
+        {letter: 'Ç', int: '&Ccedil;'},
+        {letter: 'È', int: '&Egrave;'},
+        {letter: 'É', int: '&Eacute;'},
+        {letter: 'Ê', int: '&Ecirc;'},
+        {letter: 'Ë', int: '&Euml;'},
+        {letter: 'Ì', int: '&Igrave;'},
+        {letter: 'Í', int: '&Iacute;'},
+        {letter: 'Î', int: '&Icirc;'},
+        {letter: 'Ï', int: '&Iuml;'},
+        {letter: 'Ð', int: '&ETH;'},
+        {letter: 'Ñ', int: '&Ntilde;'},
+        {letter: 'Ò', int: '&Ograve;'},
+        {letter: 'Ó', int: '&Oacute;'},
+        {letter: 'Ô', int: '&Ocirc;'},
+        {letter: 'Õ', int: '&Otilde;'},
+        {letter: 'Ö', int: '&Ouml;'},
+        {letter: 'Ø', int: '&Oslash;'},
+        {letter: 'Ù', int: '&Ugrave;'},
+        {letter: 'Ú', int: '&Uacute;'},
+        {letter: 'Û', int: '&Ucirc;'},
+        {letter: 'Ü', int: '&Uuml;'},
+        {letter: 'Ý', int: '&Yacute;'},
+    ]
+    
     if (user == 0){
         authors()
     } else if(user == 1){
@@ -198,7 +246,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else if (user == 7){
         lowercase()
     } else if(user == 8){
-        sentenceCased()
+        unicode()
     }
 
+    
 });
