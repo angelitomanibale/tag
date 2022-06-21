@@ -12,6 +12,8 @@ setTimeout(() => {
          var authorNames = prompt(`Author's names: `)
          var tagged = []
          var etal = 0
+         authorNames = authorNames.replaceAll(' ,', ',')
+         authorNames = authorNames.replaceAll(';', ',')
          var nameList = authorNames.split(' ')
          for (let i = 0; i < nameList.length; i++) {
              
@@ -108,34 +110,34 @@ setTimeout(() => {
      }
  
      function Page(){
-         var pageType = prompt('Page-range(0), Fpage&Lpage(1)>> ')
-         var userInput = prompt('Page>> ')
-         var dash = ''
-         for (let i = 0; i < userInput.length; i++) {
-             if(isNaN(userInput[i]) == true){
-                 dash = userInput[i]
-             }   
-         }
-         var number = userInput.split(dash) 
-         var xpage = number[0]
-         var ypage = number[1]
-         if (pageType == '0'){
-             if(xpage.length == ypage.length){
-                 for (let i = 0; i < xpage.length; i++) {
-                     if(xpage[i] != ypage[i]){
-                         text.append(`<page-range>${xpage}&ndash;${ypage.replace(ypage.substring(0,i), '')}</page-range>`)
-                         break
-                     }
-                 }
-             }else{
-                 text.append(`<page-range>${number[0]}&ndash;${number[1]}</page-range>`)
-             }
-             
-         } else if (pageType == '1'){
-             text.append(`<fpage>${number[0]}</fpage>&ndash;<lpage>${number[1]}</lpage>`)
-         }
-         clear()
-     }
+        pageType = prompt('Page-range(0), Fpage&Lpage(1)>> ')
+        userInput = prompt('Page>> ')
+        dash = ''
+       for (let i = 0; i < userInput.length; i++) {
+          if(userInput[i] == '-' || userInput[i] == '—' || userInput[i] == '_'){
+              dash = userInput[i]
+          }
+      }
+        number = userInput.split(dash) 
+        xpage = number[0]
+        ypage = number[1]
+       if (pageType == '0'){
+           if(xpage.length == ypage.length){
+               for (let i = 0; i < xpage.length; i++) {
+                   if(xpage[i] != ypage[i]){
+                       text.append(`<page-range>${xpage}&ndash;${ypage.replace(ypage.substring(0,i), '')}</page-range>`)
+                       break
+                   }
+               }
+           }else{
+               text.append(`<page-range>${number[0]}&ndash;${number[1]}</page-range>`)
+           }
+           
+       } else if (pageType == '1'){
+           text.append(`<fpage>${number[0]}</fpage>&ndash;<lpage>${number[1]}</lpage>`)
+       }
+       clear()
+   }
  
      function titleCase(){
          var userInput = prompt('Article title>>>')
