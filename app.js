@@ -7,7 +7,6 @@ setTimeout(() => {
      function clear(){
          op.remove()
      }
-     
      function authorsTagging(names){
          var authorNames = names
          var tagged = []
