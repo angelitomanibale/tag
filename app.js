@@ -3,17 +3,13 @@ setTimeout(() => {
     var text = document.getElementById('output')
      var op = document.getElementById('option')
      var user = prompt('>>>')
- 
+     
      function clear(){
          op.remove()
      }
- 
+     
      function authorsTagging(names){
-        if(!names){
-            var authorNames = prompt(`Author's names: `)
-        }else{
-            var authorNames = names
-        }
+         var authorNames = names
          var tagged = []
          var etal = 0
          authorNames = authorNames.replaceAll(' ,', ',')
@@ -204,9 +200,9 @@ setTimeout(() => {
          clear()
      }
 
-     function difFormat() {
-        var userInput = prompt('Names>>>')
-        author = userInput
+     function difFormat(names) {
+        // var userInput = prompt('Names>>>')
+        author = names
         nameList = author.replaceAll(',','').split(' ')
         run = 0
         authors = []
@@ -467,7 +463,18 @@ setTimeout(() => {
     ]
  
      if (user == 0){
-        authorsTagging()
+        var authorNames = prompt(`Author's names: `)
+        if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
+            authorsTagging(authorNames)
+        }else if (authorNames[0] == authorNames[0].toLowerCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
+            authorsTagging(authorNames)
+        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toUpperCase()){
+            difFormat(authorNames)
+        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '.'){
+            difFormat(authorNames)
+        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '-'){
+            difFormat(authorNames)
+        }
      } else if(user == 1){
          doi()
      } else if(user == 2){
@@ -484,8 +491,6 @@ setTimeout(() => {
          lowercase()
      } else if(user == 8){
          unicode()
-     } else if(user == 9){
-         difFormat()
      }
  
 }, 100);
