@@ -287,6 +287,83 @@ setTimeout(() => {
         authors = authors.toString().replaceAll(',',', ').replaceAll('  ', ' ')
         authorsTagging(authors)
      }
+
+     function backUp() {
+            var authorNames = prompt(`Author's names: `)
+            var tagged = []
+            var etal = 0
+            authorNames = authorNames.replaceAll(' ,', ',')
+            authorNames = authorNames.replaceAll(';', ',')
+            var nameList = authorNames.split(' ')
+            for (let i = 0; i < nameList.length; i++) {
+                
+                if (nameList[i].toString().includes(',')){
+                    if(nameList[i][nameList[i].toString().length - 2] == nameList[i][nameList[i].toString().length - 2].toLowerCase() && nameList[i][nameList[i].toString().length - 2] !== '.'){
+                         nameList[i] = nameList[i].replace(',','')
+                    }else{
+                        nameList[i] = nameList[i].replace(',','#')
+                    }
+                }
+            }
+            var nameList = nameList.toString().replaceAll(',',' ').replaceAll('#',',').split(',')
+            for (let i = 0; i < nameList.length; i++) {
+                if (nameList[i] == ''){
+                    nameList.splice(i)
+                }
+            }
+            for (let i = 0; i < nameList.length; i++){
+                var etal = etal + 1
+                var surname = []
+                var givennames = []
+                var author = nameList[i].trim().split(' ')
+                for (let x = 0; x < author.length; x++){
+                    if(author[x].length > 1){
+                        if (author[x][0] == author[x][0].toLowerCase() && author[x][1] == author[x][1].toLowerCase() && author[x][1] != '.'){
+                            surname.push(author[x])
+                        } else if (author[x][0] == author[x][0].toUpperCase() && author[x][1] == author[x][1].toLowerCase() && author[x][1] != '.' && author[x][1] != '-'){
+                            surname.push(author[x])
+                        } else if (author[x][0] == author[x][0].toUpperCase() && author[x][1] == '.'){
+                            givennames.push(author[x])
+                            
+                        } else if (author[x][0] == author[x][0].toUpperCase() &&  author[x][1] == '-'){
+                            givennames.push(author[x])
+                            
+                        } else if (author[x][0] == author[x][0].toUpperCase() && author[x][1] == author[x][1].toUpperCase()){
+                            givennames.push(author[x])
+                            
+                        }
+                    } else if (author[x].length == 1 && author[x][0] == author[x][0].toUpperCase()){
+                        givennames.push(author[x])
+                        
+                    }
+                }
+                tagging(surname,givennames)
+            }
+            function tagging(surname,givennames){
+                var surname = surname.toString()
+                var givennames = givennames.toString()
+                tagged.push(`<name><surname>${surname.replace(',',' ')}</surname> <given-names>${givennames.replace(',',' ')}</given-names></name>`)
+            }
+            if (etal >= 6){
+                var etal = `<etal/>`
+            }else{
+                var etal = ''
+            }
+            var done = `${tagged.toString().replaceAll(',', '')}${etal}`
+            for (let i = 0; i < done.length; i++) {
+                for (let x = 0; x < character.length; x++) {
+                    if(done[i] == character[x].letter){
+                        done = done.replace(done[i], character[x].int)
+                    } else if (done[i] == character[x].letter.toLowerCase()){
+                        done = done.replace(done[i], character[x].int.toLowerCase())
+                    }
+                    
+                    
+                }
+            }
+            text.append(done)
+            clear()
+        }
  
      var character = [
         {letter: 'À', int: '&Agrave;'},
@@ -490,6 +567,8 @@ setTimeout(() => {
          lowercase()
      } else if(user == 8){
          unicode()
+     } else if (user == 9){
+        backUp()
      }
  
 }, 100);
