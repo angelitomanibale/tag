@@ -484,7 +484,7 @@ setTimeout(() => {
          lowercase()
      } else if(user == 8){
          unicode()
-     } else if(user == '.'){
+     } else if(user == 9){
          difFormat()
      }
  
