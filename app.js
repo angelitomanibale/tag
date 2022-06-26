@@ -201,6 +201,7 @@ setTimeout(() => {
 
      function difFormat(names) {
         // var userInput = prompt('Names>>>')
+        console.log('s')
         author = names
         nameList = author.replaceAll(',','').split(' ')
         run = 0
@@ -221,9 +222,10 @@ setTimeout(() => {
                 }
             }
             
-
+            console.log(nameList)
             for (let x = 0; x < nameList[i].length; x++) {
                 // surnames
+                console.log(nameList[i])
                 if(nameList[i].length == 3){
                     if(nameList[i][0] == nameList[i][0].toLowerCase() && nameList[i][1] == nameList[i][1].toLowerCase() && nameList[i][2] == nameList[i][2].toLowerCase()){
                         run++
@@ -236,19 +238,21 @@ setTimeout(() => {
                         push(nameList[i], run)
                     }
                 }
-                
+                console.log(nameList)
 
                 //givennames
+                
                 if(nameList[i].length == 1){
                     if(nameList[i][0] == nameList[i][0].toUpperCase()){
+                        console.log(nameList[i])
                         run--
                         push(nameList[i], run)
                     }
-                } else if (nameList[i].length > 1){
+                }else if (nameList[i].length > 1){
                     if(nameList[i][0] == nameList[i][0].toUpperCase() && nameList[i][1] == '.'){
                         run--
                         push(nameList[i], run)
-                    } else if (nameList[i][0] == nameList[i][0].toUpperCase() && nameList[i][1] == nameList[i][1].toUpperCase()){
+                    }else if (nameList[i][0] == nameList[i][0].toUpperCase() && nameList[i][1] == nameList[i][1].toUpperCase()){
                         run--
                         push(nameList[i], run)
                     } else if (nameList[i][0] == nameList[i][0].toUpperCase() && nameList[i][-1] == '.'){
@@ -259,7 +263,6 @@ setTimeout(() => {
                         push(nameList[i], run)
                     }
                 }
-                
             }
             run = 0
         }
@@ -540,17 +543,20 @@ setTimeout(() => {
  
      if (user == 0){
         var authorNames = prompt(`Author's names: `)
-        if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
-            authorsTagging(authorNames)
-        }else if (authorNames[0] == authorNames[0].toLowerCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
-            authorsTagging(authorNames)
-        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toUpperCase()){
-            difFormat(authorNames)
-        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '.'){
-            difFormat(authorNames)
-        }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '-'){
-            difFormat(authorNames)
-        }
+            if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == ` ` && authorNames[1] !== '.'){
+                difFormat(authorNames)
+            }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
+                authorsTagging(authorNames)
+            }else if (authorNames[0] == authorNames[0].toLowerCase() && authorNames[1] == authorNames[1].toLowerCase() && authorNames[1] !== '.'){
+                authorsTagging(authorNames)
+            }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == authorNames[1].toUpperCase()){
+                difFormat(authorNames)
+            }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '.'){
+                difFormat(authorNames)
+            }else if (authorNames[0] == authorNames[0].toUpperCase() && authorNames[1] == '-'){
+                difFormat(authorNames)
+            }
+        
      } else if(user == 1){
          doi()
      } else if(user == 2){
