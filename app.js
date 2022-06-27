@@ -61,6 +61,12 @@ setTimeout(() => {
          function tagging(surname,givennames){
              var surname = surname.toString()
              var givennames = givennames.toString()
+             for (let x = 0; x < surname.split('').length; x++) {
+                if(surname[x] == ',' && surname[x-1] == surname[x-1].toLowerCase()){
+                    surname = surname.replaceAt(x, ' ')
+                }
+                
+            }
              tagged.push(`<name><surname>${surname.replace(',',' ')}</surname> <given-names>${givennames.replace(',',' ')}</given-names></name>`)
          }
          if (etal >= 6){
