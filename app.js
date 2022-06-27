@@ -7,6 +7,15 @@ setTimeout(() => {
      function clear(){
          op.remove()
      }
+     String.prototype.replaceAt = function(index, replacement) {
+        if (index >= this.length) {
+            return this.valueOf();
+        }
+    
+        var chars = this.split('');
+        chars[index] = replacement;
+        return chars.join('');
+    }
      function authorsTagging(names){
          var authorNames = names
          var tagged = []
@@ -273,15 +282,7 @@ setTimeout(() => {
             run = 0
         }
 
-        String.prototype.replaceAt = function(index, replacement) {
-            if (index >= this.length) {
-                return this.valueOf();
-            }
         
-            var chars = this.split('');
-            chars[index] = replacement;
-            return chars.join('');
-        }
         authors = authors.toString()
         authors = authors.split(',')
         authors = authors.toString().replaceAll(',',', ')
@@ -351,6 +352,12 @@ setTimeout(() => {
             function tagging(surname,givennames){
                 var surname = surname.toString()
                 var givennames = givennames.toString()
+                for (let x = 0; x < surname.split('').length; x++) {
+                    if(surname[x] == ',' && surname[x-1] == surname[x-1].toLowerCase()){
+                        surname = surname.replaceAt(x, ' ')
+                    }
+                    
+                }
                 tagged.push(`<name><surname>${surname.replace(',',' ')}</surname> <given-names>${givennames.replace(',',' ')}</given-names></name>`)
             }
             if (etal >= 6){
