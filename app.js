@@ -380,6 +380,50 @@ setTimeout(() => {
             text.append(done)
             clear()
         }
+
+        function numberedCitation(){
+            userInput = prompt('Ref Citation>> ')
+            output = []
+            if(userInput.includes('-') && userInput.includes(',')){
+                tag(userInput,3) 
+            }else if(userInput.includes(',')){
+            userInput = userInput.replaceAll(' ','').split(',')
+            tag(userInput,1)
+            }else if(userInput.includes('-')){
+                tag(userInput,2)
+            }else{
+                tag(userInput,0)
+            }
+
+
+            function tag(userInput, type){
+                if(type == 0){
+                    output = `<xref ref-type="bibr" rid="B${userInput}">${userInput}</xref>`
+                }
+                if(type == 1){
+                    for (let i = 0; i < userInput.length; i++) {
+                        output.push(`<xref ref-type="bibr" rid="B${userInput[i]}">${userInput[i]}</xref>`)
+                    }
+                    output = output.toString().replaceAll(',', ', ')
+                }else if(type == 2){
+                    userInput = userInput.replaceAll(' ','').split('-')
+                    output = `<xref ref-type="bibr" rid="B${userInput[0]}">${userInput[0]}</xref>&ndash;<xref ref-type="bibr" rid="B${userInput[1]}">${userInput[1]}</xref>`
+                }else if(type == 3){
+                    userInput = userInput.replaceAll(' ','').split(',')
+                    for (let x = 0; x < userInput.length; x++) {
+                        if(userInput[x].includes('-')){
+                            userInput[x] = userInput[x].split('-')
+                            output.push(`<xref ref-type="bibr" rid="B${userInput[x][0]}">${userInput[x][0]}</xref>&ndash;<xref ref-type="bibr" rid="B${userInput[x][1]}">${userInput[x][1]}</xref>`)
+                        }else{
+                            output.push(`<xref ref-type="bibr" rid="B${userInput[x]}">${userInput[x]}</xref>`)
+                        }
+                    }
+                }
+            output = output.toString().replaceAll(',', ', ')
+            text.append(output)
+            clear()
+            }
+        }
  
      var character = [
         {letter: 'À', int: '&Agrave;'},
@@ -587,7 +631,7 @@ setTimeout(() => {
      } else if(user == 8){
          unicode()
      } else if (user == 9){
-        backUp()
+        numberedCitation()
      }
  
 }, 100);
