@@ -151,7 +151,7 @@ setTimeout(() => {
        } else if (pageType == '1'){
            text.append(`<fpage>${number[0]}</fpage>&ndash;<lpage>${number[1]}</lpage>`)
        } else if(pageType == '2'){
-            text.append(`<elocation-id>${number[1]}</elocation-id>`)
+            text.append(`<elocation-id>${userInput}</elocation-id>`)
        }
        clear()
    }
