@@ -124,7 +124,7 @@ setTimeout(() => {
      }
  
      function Page(){
-        pageType = prompt('Page-range(0), Fpage&Lpage(1)>> ')
+        pageType = prompt('Page-range(0), Fpage&Lpage(1), elocation(2)')
         userInput = prompt('Page>> ')
         userInput = userInput.replaceAll(' ', '')
         dash = ''
@@ -150,6 +150,8 @@ setTimeout(() => {
            
        } else if (pageType == '1'){
            text.append(`<fpage>${number[0]}</fpage>&ndash;<lpage>${number[1]}</lpage>`)
+       } else if(pageType == '2'){
+            text.append(`<elocation-id>${number[1]}</elocation-id>`)
        }
        clear()
    }
