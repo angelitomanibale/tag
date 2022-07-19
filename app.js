@@ -426,6 +426,19 @@ setTimeout(() => {
             clear()
             }
         }
+
+        function removeBold(){
+            userInput = prompt('XML>> ')
+            userInput = userInput.replaceAll('<bold>Figures', 'Figures')
+            userInput = userInput.replaceAll('<bold>Figure', 'Figure')
+            userInput = userInput.replaceAll('<bold>Tables', 'Tables')
+            userInput = userInput.replaceAll('<bold>Table', 'Table')
+            userInput = userInput.replaceAll('<bold>Supplementary', 'Supplementary')
+            userInput = userInput.replaceAll('<bold>Supplemental', 'Supplemental')
+            userInput = userInput.replaceAll('</bold></xref>', '</xref>')
+            text.append(userInput)
+            clear()
+        }
  
      var character = [
         {letter: 'À', int: '&Agrave;'},
@@ -634,6 +647,8 @@ setTimeout(() => {
          unicode()
      } else if (user == 9){
         numberedCitation()
+     } else if (user == 10){
+        removeBold()
      }
  
 }, 100);
