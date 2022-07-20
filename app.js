@@ -429,13 +429,13 @@ setTimeout(() => {
 
         function removeBold(){
             userInput = prompt('XML>> ')
-            userInput = userInput.replaceAll('<bold>Figures', 'Figures')
-            userInput = userInput.replaceAll('<bold>Figure', 'Figure')
-            userInput = userInput.replaceAll('<bold>Tables', 'Tables')
-            userInput = userInput.replaceAll('<bold>Table', 'Table')
-            userInput = userInput.replaceAll('<bold>Supplementary', 'Supplementary')
-            userInput = userInput.replaceAll('<bold>Supplemental', 'Supplemental')
-            userInput = userInput.replaceAll('</bold></xref>', '</xref>')
+            userInput = userInput.replaceAll('<bold>Figures', '<?A3B2 show [bold]?><bold>Figures')
+            userInput = userInput.replaceAll('<bold>Figure', '<?A3B2 show [bold]?><bold>Figure')
+            userInput = userInput.replaceAll('<bold>Tables', '<?A3B2 show [bold]?><bold>Tables')
+            userInput = userInput.replaceAll('<bold>Table', '<?A3B2 show [bold]?><bold>Table')
+            userInput = userInput.replaceAll('<bold>Supplementary', '<?A3B2 show [bold]?><bold>Supplementary')
+            userInput = userInput.replaceAll('<bold>Supplemental', '<?A3B2 show [bold]?><bold>Supplemental')
+            userInput = userInput.replaceAll('</bold></xref>', '</bold><?A3B2 show [/bold]?></xref>')
             text.append(userInput)
             clear()
         }
