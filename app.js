@@ -427,27 +427,41 @@ setTimeout(() => {
             }
         }
 
-        function removeBold(){
-            userInput = prompt('XML>> ')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Figures', '<bold>Figures')
-            userInput = userInput.replaceAll('<bold>Figures', '<?A3B2 show [bold]?><bold>Figures')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Figure', '<bold>Figure')
-            userInput = userInput.replaceAll('<bold>Figure', '<?A3B2 show [bold]?><bold>Figure')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Tables', '<bold>Tables')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Tables', '<bold>Tables')
-            userInput = userInput.replaceAll('<bold>Tables', '<?A3B2 show [bold]?><bold>Tables')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Table', '<bold>Table')
-            userInput = userInput.replaceAll('<bold>Table', '<?A3B2 show [bold]?><bold>Table')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Supplementary', '<bold>Supplementary')
-            userInput = userInput.replaceAll('<bold>Supplementary', '<?A3B2 show [bold]?><bold>Supplementary')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Supplemental', '<bold>Supplemental')
-            userInput = userInput.replaceAll('<bold>Supplemental', '<?A3B2 show [bold]?><bold>Supplemental')
-            userInput = userInput.replaceAll('<?A3B2 show [bold]?><bold>Appendix', '<bold>Appendix')
-            userInput = userInput.replaceAll('<bold>Appendix', '<?A3B2 show [bold]?><bold>Appendix')
-            userInput = userInput.replaceAll('</bold></xref>', '</bold><?A3B2 show [/bold]?></xref>')
-            text.append(userInput)
+        function section(){
+            input = prompt(`0 Data Availability, 1 Ethics Statement, 2 Author's Contrib, 3 Funding, 4 Disclaimer, 5 COI, 6 ACK, 7 Supp Mat, 8 Abbrev`)
+            para = prompt('Paragraph>> ')
+            output = ''
+            if(input == 0){
+               output = `<sec id="sx" sec-type="data-availability"><title>Data Availability Statement</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            } else if(input == 1){
+                output = `<sec id="sx" sec-type="ethics-statement"><title>Ethics Statement</title><p><?A3B2 tpb pt?>${para}<?A3B2 tlsb pt?></p></sec>`
+            }else if(input ==2){
+                output = `<sec id="sx" sec-type="author-contributions"><title>Author Contributions</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 3){
+                output = `<sec id="sx" sec-type="funding-information"><title>Funding</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 4){
+                output = `<sec id="sx" sec-type="disclaimer"><title>Author disclaimer</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 5){
+                output = `<sec id="sx" sec-type="COI-statement"><title>Conflict of interest</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 6){
+                output = `<sec id="sx" sec-type="acknowledgments"><title>Acknowledgments</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 7){
+                output = `<sec id="SM1" sec-type="supplementary-material"><title>Supplementary material</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }else if(input == 8){
+                output = `<sec id="sx" sec-type="abbrev"><title>Abbreviations</title><p><?A3B2 tpb pt?><?A3B2 tlsb pt?>${para}</p></sec>`
+            }
+
+            text.append(output)
             clear()
         }
+
+        function email(){
+            input = prompt('email>> ')
+            output = `<email xlink:href="mailto:${input}">${input}</email>`
+            text.append(output)
+            clear()
+        }
+
  
      var character = [
         {letter: 'À', int: '&Agrave;'},
@@ -657,7 +671,9 @@ setTimeout(() => {
      } else if (user == 9){
         numberedCitation()
      } else if (user == 10){
-        removeBold()
+        section()
+     } else if (user == 1){
+        email()
      }
  
 }, 100);
