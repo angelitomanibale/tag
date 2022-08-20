@@ -428,7 +428,7 @@ setTimeout(() => {
         }
 
         function section(){
-            input = prompt(`0 Data Availability, 1 Ethics Statement, 2 Author's Contrib, 3 Funding, 4 Disclaimer, 5 COI, 6 ACK, 7 Supp Mat, 8 Abbrev`)
+            input = prompt(`Data Availability(0), Ethics Statement(1), Author's Contrib(2), Funding(3), Disclaimer(4), COI(5), ACK(6), Supp Mat(7), Abbrev(8)`)
             para = prompt('Paragraph>> ')
             output = ''
             if(input == 0){
