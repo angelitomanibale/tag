@@ -672,7 +672,7 @@ setTimeout(() => {
         numberedCitation()
      } else if (user == 10){
         section()
-     } else if (user == 1){
+     } else if (user == 11){
         email()
      }
  
