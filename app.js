@@ -462,6 +462,14 @@ setTimeout(() => {
             clear()
         }
 
+
+        function bashe(){
+            input = prompt('sigil>> ')
+            output = input.replaceAll('/table_', '/table')
+            text.append(output)
+            clear()
+        }
+
  
      var character = [
         {letter: 'À', int: '&Agrave;'},
@@ -674,6 +682,8 @@ setTimeout(() => {
         section()
      } else if (user == 11){
         email()
+     } else if (user == 'a'){
+        bashe()
      }
  
 }, 100);
