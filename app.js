@@ -465,7 +465,7 @@ setTimeout(() => {
 
         function bashe(){
             input = prompt('sigil>> ')
-            output = input.replaceAll('/table_', '/table')
+            output = input.replaceAll('/table_t', '/table')
             text.append(output)
             clear()
         }
